@@ -90,7 +90,7 @@ public class IdentityProviderServiceImpl extends AbstractService implements Iden
 
             IdentityProvider createdIdentityProvider = identityProviderRepository.create(identityProvider);
 
-            auditService.createPortalAuditLog(
+            auditService.createOrganizationAuditLog(
                     singletonMap(IDENTITY_PROVIDER, createdIdentityProvider.getId()),
                     IdentityProvider.AuditEvent.IDENTITY_PROVIDER_CREATED,
                     createdIdentityProvider.getUpdatedAt(),
@@ -128,7 +128,7 @@ public class IdentityProviderServiceImpl extends AbstractService implements Iden
             IdentityProvider updatedIdentityProvider =  identityProviderRepository.update(identityProvider);
 
             // Audit
-            auditService.createPortalAuditLog(
+            auditService.createOrganizationAuditLog(
                     singletonMap(IDENTITY_PROVIDER, id),
                     IdentityProvider.AuditEvent.IDENTITY_PROVIDER_UPDATED,
                     identityProvider.getUpdatedAt(),
@@ -174,7 +174,7 @@ public class IdentityProviderServiceImpl extends AbstractService implements Iden
 
             identityProviderRepository.delete(id);
 
-            auditService.createPortalAuditLog(
+            auditService.createOrganizationAuditLog(
                     Collections.singletonMap(IDENTITY_PROVIDER, id),
                     IdentityProvider.AuditEvent.IDENTITY_PROVIDER_DELETED,
                     new Date(),
